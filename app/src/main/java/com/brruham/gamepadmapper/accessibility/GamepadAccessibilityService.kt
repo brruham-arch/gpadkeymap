@@ -8,9 +8,9 @@ import android.content.IntentFilter
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
+import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import com.brruham.gamepadmapper.model.ActionType
-import com.brruham.gamepadmapper.model.ButtonMapping
 import com.brruham.gamepadmapper.model.MappingProfile
 import com.brruham.gamepadmapper.utils.GestureDispatcher
 import com.brruham.gamepadmapper.utils.ProfileRepository
@@ -28,8 +28,6 @@ class GamepadAccessibilityService : AccessibilityService() {
         var instance: GamepadAccessibilityService? = null
     }
 
-    // ─── BroadcastReceiver for hot-reload ────────────────────────────────────
-
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(ctx: Context, intent: Intent) {
             when (intent.action) {
@@ -43,16 +41,14 @@ class GamepadAccessibilityService : AccessibilityService() {
         }
     }
 
-    // ─── Lifecycle ────────────────────────────────────────────────────────────
-
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
 
-        // Get screen dimensions
+        val wm = getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         @Suppress("DEPRECATION")
-        windowManager.defaultDisplay.getRealMetrics(dm)
+        wm.defaultDisplay.getRealMetrics(dm)
         screenW = dm.widthPixels
         screenH = dm.heightPixels
 
@@ -74,8 +70,6 @@ class GamepadAccessibilityService : AccessibilityService() {
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
     override fun onInterrupt() {}
-
-    // ─── Key events (buttons) ────────────────────────────────────────────────
 
     override fun onKeyEvent(event: KeyEvent): Boolean {
         if (!isEnabled) return false
@@ -102,10 +96,6 @@ class GamepadAccessibilityService : AccessibilityService() {
         return false
     }
 
-    // ─── Motion events (joystick axes) ───────────────────────────────────────
-
-    // Note: Motion events from gamepad come through a different path.
-    // We expose a public method for FloatingOverlayService to forward them.
     fun handleMotionEvent(event: MotionEvent) {
         if (!isEnabled) return
         val profile = activeProfile ?: return
@@ -115,9 +105,8 @@ class GamepadAccessibilityService : AccessibilityService() {
             .forEach { mapping ->
                 val axisX = event.getAxisValue(mapping.joystickAxisX)
                 val axisY = event.getAxisValue(mapping.joystickAxisY)
-                val deadzone = 0.15f
                 val magnitude = Math.sqrt((axisX * axisX + axisY * axisY).toDouble()).toFloat()
-                if (magnitude < deadzone) {
+                if (magnitude < 0.15f) {
                     GestureDispatcher.onJoystickRelease(mapping.buttonCode)
                 } else {
                     GestureDispatcher.onJoystickMove(
@@ -128,8 +117,6 @@ class GamepadAccessibilityService : AccessibilityService() {
                 }
             }
     }
-
-    // ─── Profile loading ─────────────────────────────────────────────────────
 
     private fun loadActiveProfile() {
         activeProfile = ProfileRepository.getActiveProfile(this)
