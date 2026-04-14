@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gamepad Mapper</string>
+    <string name="accessibility_service_label">Gamepad Mapper Service</string>
+    <string name="accessibility_service_description">Translates gamepad button presses into touch gestures on screen. Required for tap, hold, swipe, and multi-touch simulation.</string>
+</resources>

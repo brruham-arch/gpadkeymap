@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Detect button -->
+        <TextView
+            android:text="Gamepad Button"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvButtonLabel"
+                android:text="—"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#1565C0"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/btnDetectButton"
+                android:text="Detect Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+
+        <!-- Action type spinner -->
+        <TextView
+            android:text="Action Type"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/spinnerAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Swipe duration -->
+        <EditText
+            android:id="@+id/etDuration"
+            android:hint="Swipe duration (ms)"
+            android:inputType="number"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Multi-tap interval -->
+        <EditText
+            android:id="@+id/etInterval"
+            android:hint="Tap interval (ms)"
+            android:inputType="number"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Joystick radius -->
+        <EditText
+            android:id="@+id/etRadius"
+            android:hint="Joystick radius (px)"
+            android:inputType="numberDecimal"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:text="Tap the screenshot canvas (behind this dialog) to set coordinates."
+            android:textSize="12sp"
+            android:textColor="#666"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Path controls -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnFinishPath"
+                android:text="Finish Path"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <Button
+                android:id="@+id/btnClearPoints"
+                android:text="Clear Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

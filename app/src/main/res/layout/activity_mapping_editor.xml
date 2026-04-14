@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Profile name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Profile name"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Screenshot canvas -->
+        <TextView
+            android:id="@+id/tvPickHint"
+            android:text="Pick screenshot, then tap canvas to set coordinates"
+            android:textSize="12sp"
+            android:textColor="#666"
+            android:paddingHorizontal="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnPickScreenshot"
+            android:text="Pick Screenshot"
+            android:layout_margin="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+        <com.brruham.gamepadmapper.ui.ScreenshotCanvasView
+            android:id="@+id/canvas"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#E0E0E0"/>
+
+        <!-- Mappings list -->
+        <TextView
+            android:text="Mappings"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMappings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddMapping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Add Mapping"
+        app:srcCompat="@android:drawable/ic_input_add"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

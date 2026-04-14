@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="3dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="1dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Button badge -->
+        <TextView
+            android:id="@+id/tvButtonName"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#1565C0"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:minWidth="48dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvActionType"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvCoords"
+                android:textSize="11sp"
+                android:textColor="#666"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:text="Edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:text="Del"
+            android:textColor="#D32F2F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

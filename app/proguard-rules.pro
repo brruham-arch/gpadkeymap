@@ -1,0 +1,3 @@
+-keep class com.brruham.gamepadmapper.model.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
